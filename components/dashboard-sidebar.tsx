@@ -37,11 +37,14 @@ export default function DashboardSidebar() {
     {/* Random avatar logic */}
     {(() => {
       const avatars = [
-        "https://randomuser.me/api/portraits/men/32.jpg",
-        "https://randomuser.me/api/portraits/women/44.jpg",
-        "https://randomuser.me/api/portraits/men/76.jpg",
-        "https://randomuser.me/api/portraits/women/68.jpg",
-        "https://randomuser.me/api/portraits/men/12.jpg",
+        "https://github.com/evilrabbit.png",
+        "https://github.com/orta.png",
+        "https://github.com/shuding.png",
+        "https://github.com/leebyron.png",
+        "https://github.com/patrickhulce.png",
+        "https://github.com/samuelvasquez.png",
+        "https://github.com/alexdotjs.png",
+        "https://github.com/shadcn.png",
       ];
       const randomAvatar = avatars[Math.floor(Math.random() * avatars.length)];
       return (
