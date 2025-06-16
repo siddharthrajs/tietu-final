@@ -1,4 +1,4 @@
-import { Home, User, Settings, LogOut } from "lucide-react";
+import { Home, User, Settings } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
