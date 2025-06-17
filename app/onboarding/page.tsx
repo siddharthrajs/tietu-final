@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
 import { Card } from "@/components/ui/card";
+import Image from "next/image";
 
 // Avatar image URLs (8 preset)
 const avatars = [
@@ -117,10 +118,11 @@ const onboardingSchema = z.object({
   wants_relationship: z.boolean(),
   wants_friendship: z.boolean(),
   avatar_url: z.string().url("Select an avatar"),
-  communityGuidelines: z.literal(true, {
-    errorMap: () => ({ message: "You must agree to the community guidelines" }),
+  communityGuidelines: z.boolean().refine(val => val === true, {
+    message: "You must agree to the community guidelines"
   }),
 });
+
 type OnboardingForm = z.infer<typeof onboardingSchema>;
 
 export default function OnboardingPage() {
@@ -150,7 +152,7 @@ export default function OnboardingPage() {
       wants_relationship: false,
       wants_friendship: false,
       avatar_url: "",
-      communityGuidelines: false as any,
+      communityGuidelines: false,
     },
   });
 
@@ -197,7 +199,7 @@ export default function OnboardingPage() {
     } else {
       clearErrors(["wants_relationship", "wants_friendship"]);
     }
-    // eslint-disable-next-line
+
   }, [wants_relationship, wants_friendship, setError, clearErrors]);
 
   // Submit handler
@@ -392,9 +394,11 @@ export default function OnboardingPage() {
                   )}
                   onClick={() => field.onChange(url)}
                 >
-                  <img
+                  <Image
                     src={url}
                     alt="Avatar"
+                    width={64}
+                    height={64}
                     className="w-full h-full rounded-full object-cover"
                   />
                 </button>
