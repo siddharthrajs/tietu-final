@@ -8,6 +8,21 @@ export default async function DashboardPage() {
     redirect("/auth/login");
   }
 
+  // Fetch the user's profile from the profiles table
+  const { data: profile, error: profileError } = await supabase
+    .from("profiles")
+    .select("has_onboarded")
+    .eq("id", data.user.id)
+    .single();
+
+  if (profileError || !profile) {
+    // Handle error or fallback (optional: show an error page)
+  }
+
+  if (!profile || !profile.has_onboarded) {
+    redirect("/onboarding");
+  }
+
   return (
     <div className="flex flex-col gap-8 p-8">
       <h1 className="text-3xl font-bold mb-4">Welcome to your Dashboard!</h1>
